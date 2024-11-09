@@ -10,7 +10,7 @@ public class UserEntity {
     private String name;
     private String email;
     private String phoneNumber;
-
+    private String Password;
     // Getters and setters
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
@@ -23,4 +23,8 @@ public class UserEntity {
 
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getPassword() { return Password; }
+    public void setPassword(String Password) { this.Password = Password; }
+
 }

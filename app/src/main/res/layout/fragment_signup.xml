@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="850dp"
+        android:layout_height="969dp"
+        app:srcCompat="@drawable/dog1"
+        tools:layout_editor_absoluteX="-439dp"
+        tools:layout_editor_absoluteY="-238dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="160dp"
+        android:layout_height="43dp"
+        android:background="@drawable/button_background"
+        android:text="Login"
+        android:textColorLink="#000000"
+        app:icon="@color/black"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="614dp" />
+
+    <LinearLayout
+        android:layout_width="349dp"
+        android:layout_height="360dp"
+
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="222dp">
+
+        <EditText
+            android:id="@+id/editText_name"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="Name"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editText_email"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="email"
+            android:textAlignment="center"
+
+            />
+
+        <EditText
+            android:id="@+id/editText_phoneNumber"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="phoneNumber"
+            android:textAlignment="center"
+
+            />
+
+        <EditText
+            android:id="@+id/editText_password"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:text="Password"
+            android:textAlignment="center"
+
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
