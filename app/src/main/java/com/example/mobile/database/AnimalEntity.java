@@ -1,9 +1,18 @@
 package com.example.mobile.database;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "animals")
+@Entity(
+        tableName = "animals",
+        foreignKeys = @ForeignKey(
+                entity = UserEntity.class,
+                parentColumns = "userId",
+                childColumns = "ownerId",
+                onDelete = ForeignKey.CASCADE // Optional: set cascading delete
+        )
+)
 public class AnimalEntity {
     @PrimaryKey(autoGenerate = true)
     private int animalId;

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             user.setName("John Doe");
             user.setEmail("john@example.com");
             user.setPhoneNumber("123456789");
+            user.setPassword("123");
             db.userDao().insertUser(user);
 
             // Example: Fetch all users
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_login)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
