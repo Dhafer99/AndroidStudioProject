@@ -10,4 +10,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_food">Food</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="food_fragment">Food Fragment</string>
+    <string name="food_plan">Food Plan</string>
+    <string name="food_menu">Food Menu</string>
+    <string name="day">Day</string>
+    <string name="type">Type</string>
 </resources>
