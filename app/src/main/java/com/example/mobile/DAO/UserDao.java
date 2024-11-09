@@ -18,6 +18,10 @@ public interface UserDao {
 
     @Query("SELECT * FROM users WHERE email = :email AND password = :password LIMIT 1")
     UserEntity loginUser(String email, String password);
+
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    UserEntity getUserByEmail(String email);
+
 }
 
 

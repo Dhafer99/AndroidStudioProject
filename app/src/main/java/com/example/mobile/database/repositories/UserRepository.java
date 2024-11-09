@@ -22,4 +22,11 @@ public class UserRepository {
     public UserEntity loginUser(String email, String password) {
         return userDao.loginUser(email, password);
     }
+    public void insertuser(UserEntity user) {
+         userDao.insertUser(user);
+    }
+
+    public UserEntity getUserByEmail(String email){
+        return userDao.getUserByEmail(email);
+    }
 }
