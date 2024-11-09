@@ -1,26 +1,84 @@
 package com.example.mobile.database;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "foods")
 public class FoodEntity {
     @PrimaryKey(autoGenerate = true)
-    private int foodId;
-    private String name;
+    private long foodId;
+    private String nom;
+    private String description;
+    private String image;
     private String type;
-    private int quantity;
+    private String categorie;
+    private int quantite;
+    private String unite;
 
-    // Getters and setters
-    public int getFoodId() { return foodId; }
-    public void setFoodId(int foodId) { this.foodId = foodId; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public long getFoodId() {
+        return foodId;
+    }
 
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public void setFoodId(long foodId) {
+        this.foodId = foodId;
+    }
 
-    public int getQuantity() { return quantity; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public String getUnite() {
+        return unite;
+    }
+
+    public void setUnite(String unite) {
+        this.unite = unite;
+    }
 }

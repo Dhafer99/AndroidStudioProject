@@ -11,6 +11,7 @@ public class DatabaseProvider {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     PetCareDatabase.class, "pet_care_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

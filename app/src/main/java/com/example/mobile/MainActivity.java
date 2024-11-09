@@ -2,12 +2,17 @@ package com.example.mobile;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.mobile.DAO.PlanFoodDao;
 import com.example.mobile.database.DatabaseProvider;
+import com.example.mobile.database.FoodEntity;
 import com.example.mobile.database.PetCareDatabase;
+import com.example.mobile.database.PlanFoodEntity;
 import com.example.mobile.database.UserEntity;
+import com.example.mobile.database.relations.PlanFoodCrossRef;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PetCareDatabase db = DatabaseProvider.getDatabase(this);
-
+        PlanFoodDao planFoodDao = db.planFoodDao();
         // Access DAOs to perform database operations
         new Thread(() -> {
             // Example: Insert a user
@@ -46,6 +51,36 @@ public class MainActivity extends AppCompatActivity {
             for (UserEntity u : users) {
                 System.out.println(u.getName());
             }
+
+
+
+            // exemple insert plan with food
+            FoodEntity food = new FoodEntity();
+            food.setNom("Pomme");
+            food.setDescription("Une pomme fraîche");
+            food.setImage("url_image_pomme");
+            food.setType("Fruit");
+            food.setCategorie("Fruits");
+            food.setQuantite(1);
+            food.setUnite("Pièce");
+
+            long foodId = planFoodDao.insertFood(food);
+
+            // Création d'un objet PlanFood
+            PlanFoodEntity plan = new PlanFoodEntity();
+            plan.setJour("Lundi");
+            plan.setType("Petit déjeuner");
+
+            long planId = planFoodDao.insertPlan(plan);
+
+            // Création d'un objet PlanFoodCrossRef pour lier food et plan
+            PlanFoodCrossRef crossRef = new PlanFoodCrossRef();
+            crossRef.setFoodId(foodId);
+            crossRef.setPlanId(planId);
+            planFoodDao.insertPlanFoodCrossRef(crossRef);
+
+            Log.d("Insertion", "Insertion réussie avec FoodEntity ID: " + foodId + " et PlanFood ID: " + planId);
+
         }).start();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
