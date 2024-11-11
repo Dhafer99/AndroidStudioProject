@@ -81,7 +81,7 @@
                 android:id="@+id/iconEdit"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:contentDescription="Edit Animal"
                 app:tint="#FFC300"
             android:src="@drawable/pencil" />

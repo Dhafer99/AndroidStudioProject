@@ -43,8 +43,8 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     @Override
     public void onBindViewHolder(@NonNull AnimalViewHolder holder, int position) {
         AnimalEntity animal = animalList.get(position);
-        holder.textViewName.setText("Name: " + animal.getName());
-        holder.textViewSpecies.setText("Species: " + animal.getSpecies());
+        holder.textViewName.setText(animal.getName());
+        holder.textViewSpecies.setText(animal.getSpecies());
         holder.textViewAge.setText("Age: " + animal.getAge());
         // Set the image if available
         if (animal.getImageUri() != null) {
