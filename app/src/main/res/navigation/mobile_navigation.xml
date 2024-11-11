@@ -65,5 +65,23 @@
         android:label="Food Product"
         tools:layout="@layout/fragment_listproduct" />
 
+    <fragment
+        android:id="@+id/nav_service_fares"
+        android:name="com.example.mobile.ui.service.serviceAddFragment"
+        android:label="service"
+        tools:layout="@layout/fragment_serviceadd">
+        <action
+            android:id="@+id/action_nav_service_fares_to_nav_ajoutService"
+            app:destination="@id/nav_ajoutService" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/nav_ajoutService"
+        android:name="com.example.mobile.ui.service.Ajout.serviceajoutFragment"
+        android:label="service"
+        tools:layout="@layout/fragment_serviceajout" />
+
 
 </navigation>
