@@ -20,6 +20,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     private final Context context;
     private final OnAnimalActionListener actionListener;
 
+    // Define the interface for handling edit and delete actions
     public interface OnAnimalActionListener {
         void onEdit(AnimalEntity animal);
         void onDelete(AnimalEntity animal);
@@ -48,7 +49,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         // Set click listener for edit icon to navigate to AnimalEditFragment
         holder.iconEdit.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("animal", animal); // Ensure AnimalEntity implements Parcelable
+            bundle.putParcelable("animal", animal); // Use "selectedAnimal" key with Parcelable object
             Navigation.findNavController(v).navigate(R.id.action_animalListFragment_to_animalEditFragment, bundle);
         });
 
@@ -61,6 +62,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         return animalList.size();
     }
 
+    // ViewHolder class to hold the views for each item
     public static class AnimalViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName, textViewSpecies, textViewAge;
         ImageView iconEdit, iconDelete;

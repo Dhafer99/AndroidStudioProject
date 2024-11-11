@@ -27,7 +27,7 @@ public class AnimalEditFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment (using the edit interface layout)
         View view = inflater.inflate(R.layout.fragment_animal_edit, container, false);
 
         // Initialize UI components
@@ -37,11 +37,11 @@ public class AnimalEditFragment extends Fragment {
         buttonSaveChanges = view.findViewById(R.id.buttonSaveChanges);
 
         // Initialize ViewModel
-        animalViewModel = new ViewModelProvider(this).get(AnimalViewModel.class);
+        animalViewModel = new ViewModelProvider(requireActivity()).get(AnimalViewModel.class);
 
         // Get the passed AnimalEntity from arguments (if any)
         if (getArguments() != null) {
-            animalToEdit = (AnimalEntity) getArguments().getSerializable("selectedAnimal");
+            animalToEdit = getArguments().getParcelable("animal"); // Get Parcelable instead of Serializable
             if (animalToEdit != null) {
                 // Populate the fields with current animal data
                 editTextName.setText(animalToEdit.getName());
@@ -50,7 +50,7 @@ public class AnimalEditFragment extends Fragment {
             }
         }
 
-        // Set button click listener
+        // Set button click listener for saving changes
         buttonSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class AnimalEditFragment extends Fragment {
 
             // Navigate back to the list after saving changes
             NavController navController = Navigation.findNavController(view);
-            navController.popBackStack(); // Go back to the previous fragment
+            navController.navigate(R.id.action_animalEditFragment_to_animalListFragment);
         }
     }
 }

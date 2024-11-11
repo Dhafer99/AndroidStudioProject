@@ -5,18 +5,21 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
+    <!-- Home Fragment -->
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.mobile.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <!-- Gallery Fragment -->
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.mobile.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
+    <!-- Slideshow Fragment -->
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.mobile.ui.slideshow.SlideshowFragment"
@@ -37,12 +40,13 @@
         android:label="Signup"
         tools:layout="@layout/fragment_signup" />
 
-    <!-- Animal Fragment with Action -->
+    <!-- Animal Fragment -->
     <fragment
         android:id="@+id/nav_animal"
         android:name="com.example.mobile.ui.animal.AnimalFragment"
         android:label="Animal"
         tools:layout="@layout/fragment_animal">
+        <!-- Action: Navigate from AnimalFragment to AnimalListFragment -->
         <action
             android:id="@+id/action_animalFragment_to_animalListFragment"
             app:destination="@id/animalListFragment" />
@@ -54,6 +58,7 @@
         android:name="com.example.mobile.ui.animal.AnimalListFragment"
         android:label="Animal List"
         tools:layout="@layout/fragment_animal_list">
+        <!-- Action: Navigate from AnimalListFragment to AnimalEditFragment -->
         <action
             android:id="@+id/action_animalListFragment_to_animalEditFragment"
             app:destination="@id/animalEditFragment" />
@@ -64,6 +69,11 @@
         android:id="@+id/animalEditFragment"
         android:name="com.example.mobile.ui.animal.AnimalEditFragment"
         android:label="Edit Animal"
-        tools:layout="@layout/fragment_animal_edit" />
+        tools:layout="@layout/fragment_animal_edit">
+        <action
+            android:id="@+id/action_animalEditFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+    </fragment>
+
 
 </navigation>
