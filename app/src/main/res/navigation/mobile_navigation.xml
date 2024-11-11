@@ -23,18 +23,47 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
-    <!-- nav_graph.xml -->
+    <!-- Login Fragment -->
     <fragment
         android:id="@+id/nav_login"
         android:name="com.example.mobile.ui.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" />
 
+    <!-- Signup Fragment -->
     <fragment
         android:id="@+id/nav_signup"
         android:name="com.example.mobile.ui.signup.SignupFragment"
-        android:label="Login"
+        android:label="Signup"
         tools:layout="@layout/fragment_signup" />
 
+    <!-- Animal Fragment with Action -->
+    <fragment
+        android:id="@+id/nav_animal"
+        android:name="com.example.mobile.ui.animal.AnimalFragment"
+        android:label="Animal"
+        tools:layout="@layout/fragment_animal">
+        <action
+            android:id="@+id/action_animalFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+    </fragment>
+
+    <!-- Animal List Fragment -->
+    <fragment
+        android:id="@+id/animalListFragment"
+        android:name="com.example.mobile.ui.animal.AnimalListFragment"
+        android:label="Animal List"
+        tools:layout="@layout/fragment_animal_list">
+        <action
+            android:id="@+id/action_animalListFragment_to_animalEditFragment"
+            app:destination="@id/animalEditFragment" />
+    </fragment>
+
+    <!-- Animal Edit Fragment -->
+    <fragment
+        android:id="@+id/animalEditFragment"
+        android:name="com.example.mobile.ui.animal.AnimalEditFragment"
+        android:label="Edit Animal"
+        tools:layout="@layout/fragment_animal_edit" />
 
 </navigation>

@@ -25,5 +25,10 @@
             android:id="@+id/nav_signup"
             android:icon="@mipmap/usericon_foreground"
             android:title="Signup" />
+
+        <item
+            android:id="@+id/nav_animal"
+            android:icon="@drawable/animal"
+            android:title="Animal" />
     </group>
 </menu>

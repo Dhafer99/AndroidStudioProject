@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Content Section -->
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@+id/iconContainer"
+            android:layout_alignParentStart="true">
+
+            <!-- Name TextView -->
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: [Name]"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Species TextView -->
+            <TextView
+                android:id="@+id/textViewSpecies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Species: [Species]"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp" />
+
+            <!-- Age TextView -->
+            <TextView
+                android:id="@+id/textViewAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age: [Age]"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Icon Container -->
+        <LinearLayout
+            android:id="@+id/iconContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="end">
+
+            <!-- Edit Icon -->
+            <ImageView
+                android:id="@+id/iconEdit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/pencil"
+                app:tint="#FFC300"
+                android:contentDescription="Edit"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Delete Icon -->
+            <ImageView
+                android:id="@+id/iconDelete"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/bin"
+                app:tint="#FFC300"
+                android:contentDescription="Delete" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

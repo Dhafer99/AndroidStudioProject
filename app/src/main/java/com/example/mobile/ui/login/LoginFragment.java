@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.mobile.databinding.FragmentLoginBinding;
 import com.example.mobile.database.repositories.UserRepository;
-
+import com.example.mobile.ui.login.LoginViewModel;
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
@@ -28,7 +28,7 @@ public class LoginFragment extends Fragment {
             @Override
             @NonNull
             public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                return (T) new LoginViewModel(userRepository);
+                return (T) new com.example.mobile.ui.login.LoginViewModel(userRepository);
             }
         }).get(LoginViewModel.class);
 
