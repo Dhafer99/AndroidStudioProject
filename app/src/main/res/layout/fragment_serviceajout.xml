@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+
+
+
     <!-- Title -->
 
     <TextView
@@ -77,14 +80,16 @@
                 android:hint="Place"
                 android:padding="10dp" />
 
-            <EditText
-                android:id="@+id/startDateText"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_select_date_time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#FFC300"
-                android:hint="Start Date (YYYY-MM-DD)"
-                android:padding="10dp" />
+                android:text="Select Date and Time"/>
+            <TextView
+                android:id="@+id/txt_date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Date and Time" />
 
             <EditText
                 android:id="@+id/endDateText"
@@ -96,15 +101,7 @@
                 android:padding="10dp" />
 
             <!-- Price Field -->
-            <EditText
-                android:id="@+id/priceText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="#FFC300"
-                android:hint="Price"
-                android:inputType="number"
-                android:padding="10dp" />
+
 
             <!-- ImageView for selecting image -->
 

@@ -1,10 +1,10 @@
-package  com.example.mobile.ui.service;
+package com.example.mobile.ui.service;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +14,6 @@ import androidx.navigation.Navigation;
 
 import com.example.mobile.R;
 import com.example.mobile.databinding.FragmentServiceaddBinding;
-import com.example.mobile.ui.service.serviceAddViewModel;
 
 public class serviceAddFragment extends Fragment {
     private FragmentServiceaddBinding binding;
@@ -26,13 +25,19 @@ public class serviceAddFragment extends Fragment {
         binding = FragmentServiceaddBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Button addService_btn =  binding.addnewServiceBtn;
+        Button addService_btn = binding.addnewServiceBtn;
+        Button showService_btn = binding.showServiceBtn;  // Make sure this ID matches your XML layout
 
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
 
         addService_btn.setOnClickListener(v -> {
             navController.navigate(R.id.action_nav_service_fares_to_nav_ajoutService);
         });
+
+        showService_btn.setOnClickListener(v -> {
+            navController.navigate(R.id.action_nav_service_fares_to_serviceaffichageFragment);
+        });
+
         return root;
     }
 
@@ -41,6 +46,4 @@ public class serviceAddFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
 }

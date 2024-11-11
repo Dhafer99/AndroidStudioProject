@@ -51,4 +51,5 @@ dependencies {
     def nav_version = "2.7.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "com.wdullaer:materialdatetimepicker:4.2.3"
 }

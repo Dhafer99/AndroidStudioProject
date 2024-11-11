@@ -29,6 +29,10 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.MyviewHo
         serviceList.add(serviceEntity);
         notifyDataSetChanged();    }
 
+    public void setServiceList(List<ServiceEntity> serviceList) {
+        this.serviceList = serviceList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,14 +48,14 @@ public class serviceAdapter extends RecyclerView.Adapter<serviceAdapter.MyviewHo
         holder.phone.setText(serviceEntity.getPhone());
         holder.place.setText(serviceEntity.getPlace());
         holder.startDate.setText(serviceEntity.getStartDate());
-        holder.startDate.setText(serviceEntity.getEndDate());
+        holder.endDate.setText(serviceEntity.getEndDate());
         holder.price.setText(serviceEntity.getPrice());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return serviceList.size();
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder{

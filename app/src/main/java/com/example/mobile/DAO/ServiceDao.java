@@ -5,7 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
-
+import androidx.lifecycle.LiveData;
 import com.example.mobile.database.FoodEntity;
 import com.example.mobile.database.PlanFoodEntity;
 import com.example.mobile.database.ServiceEntity;
@@ -18,5 +18,5 @@ public interface ServiceDao {
     long insertService(ServiceEntity service);
 
     @Query("SELECT * FROM services")
-    List<ServiceEntity> getAllEntretiens();
+    LiveData<List<ServiceEntity>> getAllServices();
 }

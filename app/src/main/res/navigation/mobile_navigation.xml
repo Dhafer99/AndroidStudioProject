@@ -32,25 +32,20 @@
     <fragment
         android:id="@+id/nav_signup"
         android:name="com.example.mobile.ui.signup.SignupFragment"
-        android:label="Login"
+        android:label="Sign Up"
         tools:layout="@layout/fragment_signup" />
-
 
     <fragment
         android:id="@+id/nav_food"
         android:name="com.example.mobile.ui.food.FoodFragment"
         android:label="@string/menu_food"
         tools:layout="@layout/fragment_food">
-
-        <!-- Define navigation actions from FoodFragment to each target fragment -->
         <action
             android:id="@+id/action_foodFragment_to_foodPlanFragment"
             app:destination="@id/foodPlanFragment" />
-
         <action
             android:id="@+id/action_foodFragment_to_foodProductFragment"
             app:destination="@id/foodProductFragment" />
-
     </fragment>
 
     <fragment
@@ -68,20 +63,28 @@
     <fragment
         android:id="@+id/nav_service_fares"
         android:name="com.example.mobile.ui.service.serviceAddFragment"
-        android:label="service"
+        android:label="Service"
         tools:layout="@layout/fragment_serviceadd">
         <action
             android:id="@+id/action_nav_service_fares_to_nav_ajoutService"
             app:destination="@id/nav_ajoutService" />
+        <!-- Add navigation to serviceaffichageFragment -->
+        <action
+            android:id="@+id/action_nav_service_fares_to_serviceaffichageFragment"
+            app:destination="@id/serviceaffichageFragment" />
     </fragment>
-
-
 
     <fragment
         android:id="@+id/nav_ajoutService"
         android:name="com.example.mobile.ui.service.Ajout.serviceajoutFragment"
-        android:label="service"
+        android:label="Add Service"
         tools:layout="@layout/fragment_serviceajout" />
 
+    <!-- Add the serviceaffichageFragment definition -->
+    <fragment
+        android:id="@+id/serviceaffichageFragment"
+        android:name="com.example.mobile.ui.service.affichage.serviceaffichageFragment"
+        android:label="Service Display"
+        tools:layout="@layout/fragment_serviceaffichage" />
 
 </navigation>
