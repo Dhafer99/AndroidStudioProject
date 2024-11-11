@@ -1,6 +1,7 @@
 package com.example.mobile.ui.animal;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         holder.textViewName.setText("Name: " + animal.getName());
         holder.textViewSpecies.setText("Species: " + animal.getSpecies());
         holder.textViewAge.setText("Age: " + animal.getAge());
+        // Set the image if available
+        if (animal.getImageUri() != null) {
+            Uri uri = Uri.parse(animal.getImageUri());
+            holder.imageViewAnimal.setImageURI(uri);
+        } else {
+            holder.imageViewAnimal.setImageResource(R.drawable.placeholder_image); // Use a placeholder image if no image is available
+        }
 
         // Set click listener for edit icon to navigate to AnimalEditFragment
         holder.iconEdit.setOnClickListener(v -> {
@@ -55,6 +63,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
         // Set click listener for delete icon
         holder.iconDelete.setOnClickListener(v -> actionListener.onDelete(animal));
+
+        // Set click listener for the entire item to navigate to AnimalDetailsFragment
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("animal", animal);
+            Navigation.findNavController(v).navigate(R.id.action_animalListFragment_to_animalDetailsFragment, bundle);
+        });
     }
 
     @Override
@@ -66,12 +81,14 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     public static class AnimalViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName, textViewSpecies, textViewAge;
         ImageView iconEdit, iconDelete;
+        ImageView imageViewAnimal;
 
         public AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewSpecies = itemView.findViewById(R.id.textViewSpecies);
             textViewAge = itemView.findViewById(R.id.textViewAge);
+            imageViewAnimal = itemView.findViewById(R.id.imageViewAnimal);
             iconEdit = itemView.findViewById(R.id.iconEdit);
             iconDelete = itemView.findViewById(R.id.iconDelete);
         }

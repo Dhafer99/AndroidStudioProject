@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import com.example.mobile.DAO.AnimalDao;
 import com.example.mobile.DAO.UserDao;
 
-@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class}, version =7, exportSchema = false)
+@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class}, version =8, exportSchema = false)
 public abstract class PetCareDatabase extends RoomDatabase {
     public abstract UserDao userDao();
    // public abstract ServiceDao serviceDao();

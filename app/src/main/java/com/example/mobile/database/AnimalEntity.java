@@ -24,6 +24,16 @@ public class AnimalEntity implements Parcelable {
     private String species;
     private int age;
     private int ownerId; // Foreign key to User
+    private String imageUri; // Field to store the image URI
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
 
     public AnimalEntity() {
     }
