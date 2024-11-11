@@ -21,5 +21,20 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer">
+        <!-- Logout Button at the Bottom -->
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+
+            android:text="Logout"
+            android:drawableEnd="@drawable/ic_logout"
+            android:gravity="start|center_vertical"
+            android:padding="5dp"
+            />
+
+        </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

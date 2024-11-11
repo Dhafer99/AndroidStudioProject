@@ -3,6 +3,7 @@ package com.example.mobile.ui.signup;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
 import com.example.mobile.database.UserEntity;
 import com.example.mobile.database.repositories.UserRepository;
 import java.util.concurrent.ExecutorService;
@@ -35,6 +36,7 @@ public class SignupViewModel extends ViewModel {
                 user.setEmail(email);
                 user.setPhoneNumber(phoneNumber);
                 user.setPassword(password);
+                user.setRole("User");
                 userRepository.insertuser(user);
                 signupResult.postValue(true); // Signup successful
             }

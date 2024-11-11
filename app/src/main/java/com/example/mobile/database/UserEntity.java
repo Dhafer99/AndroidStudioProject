@@ -1,7 +1,11 @@
 package com.example.mobile.database;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.mobile.Converter.RoleConverter;
 
 @Entity(tableName = "users")
 public class UserEntity {
@@ -11,11 +15,61 @@ public class UserEntity {
     private String email;
     private String phoneNumber;
 
+    private String type ;
+
     private String password ;
 
+    private String role  ;
+
+    private String userType; // "Doctor" or "User"
+
+    private Boolean isBlocked ;
     // Getters and setters
-    public int getUserId() { return userId; }
+    private double latitude;
+    private double longitude;
+
+    // Getters and Setters for new fields
+    public double getLatitude() {
+        return latitude;
+    }
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String type) {
+        this.userType = type;
+    }
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
+
+    public Boolean getIsBlocked() { return isBlocked; }
+
+    public void setIsBlocked(Boolean isBlocked) { this.isBlocked = isBlocked; }
+
+
     public void setUserId(int userId) { this.userId = userId; }
+
+    public int getUserId() {return userId ;} ;
+
+    public String getRole(){
+        return role ;
+    }
+    public void setRole(String role){
+       this.role=role ;
+    }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
