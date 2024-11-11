@@ -18,7 +18,6 @@ public class AnimalDetailsFragment extends Fragment {
 
     private ImageView imageViewAnimalDetails;
     private TextView textViewAnimalName, textViewAnimalSpecies, textViewAnimalAge;
-    private AnimalEntity selectedAnimal;
 
     @Nullable
     @Override
@@ -35,16 +34,19 @@ public class AnimalDetailsFragment extends Fragment {
 
         // Get the passed AnimalEntity from arguments
         if (getArguments() != null) {
-            selectedAnimal = getArguments().getParcelable("animal");
+            AnimalEntity selectedAnimal = getArguments().getParcelable("animal");
             if (selectedAnimal != null) {
                 // Populate the fields with the animal data
-                textViewAnimalName.setText(selectedAnimal.getName());
-                textViewAnimalSpecies.setText("Species: " + selectedAnimal.getSpecies());
+                textViewAnimalName.setText(selectedAnimal.getName() != null ? selectedAnimal.getName() : "Unknown");
+                textViewAnimalSpecies.setText("Species: " + (selectedAnimal.getSpecies() != null ? selectedAnimal.getSpecies() : "Unknown"));
                 textViewAnimalAge.setText("Age: " + selectedAnimal.getAge());
 
+                // Load the image using Picasso, with a placeholder if imageUri is null
                 if (selectedAnimal.getImageUri() != null) {
                     Uri imageUri = Uri.parse(selectedAnimal.getImageUri());
-                    Picasso.get().load(imageUri).into(imageViewAnimalDetails);
+                    Picasso.get().load(imageUri).placeholder(R.drawable.placeholder_image).into(imageViewAnimalDetails);
+                } else {
+                    Picasso.get().load(R.drawable.placeholder_image).into(imageViewAnimalDetails);
                 }
             }
         }

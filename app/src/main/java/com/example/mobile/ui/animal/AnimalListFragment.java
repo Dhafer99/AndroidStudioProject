@@ -8,12 +8,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile.R;
 import com.example.mobile.database.AnimalEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class AnimalListFragment extends Fragment implements AnimalAdapter.OnAnim
     private AnimalAdapter animalAdapter;
     private AnimalViewModel animalViewModel;
     private List<AnimalEntity> animalList = new ArrayList<>();
+    private List<AnimalEntity> filteredAnimalList = new ArrayList<>();
     private int userId = 1; // Replace with the actual user ID logic
 
     @Nullable
@@ -37,7 +40,7 @@ public class AnimalListFragment extends Fragment implements AnimalAdapter.OnAnim
         recyclerViewAnimals.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Set up the adapter with the action listener
-        animalAdapter = new AnimalAdapter(getContext(), animalList, this);
+        animalAdapter = new AnimalAdapter(getContext(), filteredAnimalList, this);
         recyclerViewAnimals.setAdapter(animalAdapter);
 
         // Initialize the ViewModel
@@ -48,11 +51,45 @@ public class AnimalListFragment extends Fragment implements AnimalAdapter.OnAnim
             if (userWithAnimals != null && userWithAnimals.animals != null) {
                 animalList.clear();
                 animalList.addAll(userWithAnimals.animals);
+                filteredAnimalList.clear();
+                filteredAnimalList.addAll(animalList);
                 animalAdapter.notifyDataSetChanged();
             }
         });
 
+        // Initialize the SearchView
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                filterAnimals(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterAnimals(newText);
+                return false;
+            }
+        });
+
         return view;
+    }
+
+    private void filterAnimals(String query) {
+        filteredAnimalList.clear();
+        if (query.isEmpty()) {
+            filteredAnimalList.addAll(animalList);
+        } else {
+            for (AnimalEntity animal : animalList) {
+                if (animal.getName().toLowerCase().contains(query.toLowerCase()) ||
+                        animal.getSpecies().toLowerCase().contains(query.toLowerCase()) ||
+                        String.valueOf(animal.getAge()).contains(query)) {
+                    filteredAnimalList.add(animal);
+                }
+            }
+        }
+        animalAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -76,12 +113,11 @@ public class AnimalListFragment extends Fragment implements AnimalAdapter.OnAnim
                         if (userWithAnimals != null && userWithAnimals.animals != null) {
                             animalList.clear();
                             animalList.addAll(userWithAnimals.animals);
-                            animalAdapter.notifyDataSetChanged();
+                            filterAnimals(""); // Reapply filter to ensure correct list state
                         }
                     });
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .show();
     }
-
 }

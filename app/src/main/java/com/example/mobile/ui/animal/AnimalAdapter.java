@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile.R;
 import com.example.mobile.database.AnimalEntity;
+
 import java.util.List;
 
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
@@ -43,11 +44,14 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     @Override
     public void onBindViewHolder(@NonNull AnimalViewHolder holder, int position) {
         AnimalEntity animal = animalList.get(position);
-        holder.textViewName.setText(animal.getName());
-        holder.textViewSpecies.setText(animal.getSpecies());
+
+        // Bind animal data to views
+        holder.textViewName.setText("Name: " + animal.getName());
+        holder.textViewSpecies.setText("Species: " + animal.getSpecies());
         holder.textViewAge.setText("Age: " + animal.getAge());
-        // Set the image if available
-        if (animal.getImageUri() != null) {
+
+        // Set the image if available, otherwise use the placeholder image
+        if (animal.getImageUri() != null && !animal.getImageUri().isEmpty()) {
             Uri uri = Uri.parse(animal.getImageUri());
             holder.imageViewAnimal.setImageURI(uri);
         } else {
@@ -57,7 +61,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         // Set click listener for edit icon to navigate to AnimalEditFragment
         holder.iconEdit.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putParcelable("animal", animal); // Use "selectedAnimal" key with Parcelable object
+            bundle.putParcelable("animal", animal);
             Navigation.findNavController(v).navigate(R.id.action_animalListFragment_to_animalEditFragment, bundle);
         });
 

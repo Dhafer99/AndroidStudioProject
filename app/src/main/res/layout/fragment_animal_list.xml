@@ -3,6 +3,14 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
+    <!-- SearchView for filtering animals -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:queryHint="Search by name, species, or age" />
+
     <!-- TextView for empty state -->
     <TextView
         android:id="@+id/textViewEmptyState"
@@ -20,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:layout_margin="8dp" />
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/searchView" />
 
 </RelativeLayout>
