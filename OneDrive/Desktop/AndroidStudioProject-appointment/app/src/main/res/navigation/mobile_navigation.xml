@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.mobile.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.mobile.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.mobile.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <!-- Login Fragment
+    // <fragment
+       // android:id="@+id/nav_login"
+       //android:name="com.example.mobile.ui.login.LoginFragment"
+       //android:label="Login"
+       // tools:layout="@layout/fragment_login" />
+
+    <!- Signup Fragment  -->
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.example.mobile.ui.signup.SignupFragment"
+        android:label="Signup"
+        tools:layout="@layout/fragment_signup" />
+
+    <!-- Animal Fragment with Action -->
+    <fragment
+        android:id="@+id/nav_animal"
+        android:name="com.example.mobile.ui.animal.AnimalFragment"
+        android:label="Animal"
+        tools:layout="@layout/fragment_animal">
+        <action
+            android:id="@+id/action_animalFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+    </fragment>
+
+    <!-- Animal List Fragment -->
+    <fragment
+        android:id="@+id/animalListFragment"
+        android:name="com.example.mobile.ui.animal.AnimalListFragment"
+        android:label="Animal List"
+        tools:layout="@layout/fragment_animal_list">
+        <action
+            android:id="@+id/action_animalListFragment_to_animalEditFragment"
+            app:destination="@id/animalEditFragment" />
+    </fragment>
+
+    <!-- Animal Edit Fragment -->
+    <fragment
+        android:id="@+id/animalEditFragment"
+        android:name="com.example.mobile.ui.animal.AnimalEditFragment"
+        android:label="Edit Animal"
+        tools:layout="@layout/fragment_animal_edit" />
+
+
+
+    <!-- Animal Fragment in Navigation Drawer -->
+    <fragment
+        android:id="@+id/nav_appointment"
+        android:name="com.example.mobile.ui.appointment.AppointmentHomeFragment"
+        android:label="Animal"
+        tools:layout="@layout/fragment_appointment_home">
+        <action
+            android:id="@+id/action_appointmentHomeFragment_to_appointmentFragment"
+            app:destination="@id/appointmentFragment" />
+        <action
+            android:id="@+id/action_appointmentHomeFragment_to_appointmentListFragment"
+            app:destination="@id/appointmentListFragment" />
+    </fragment>
+
+
+
+
+
+    <!-- Appointment Fragment  -->
+    <fragment
+        android:id="@+id/appointmentFragment"
+        android:name="com.example.mobile.ui.appointment.AppointmentFragment"
+        android:label="Appointment"
+        tools:layout="@layout/fragment_appointment">
+        <action
+            android:id="@+id/action_appointmentFragment_to_appointmentListFragment"
+            app:destination="@id/appointmentListFragment" />
+
+    </fragment>
+
+    <!-- Appointment List Fragment -->
+    <fragment
+        android:id="@+id/appointmentListFragment"
+        android:name="com.example.mobile.ui.appointment.AppointmentListFragment"
+        android:label="Appointment List"
+        tools:layout="@layout/fragment_appointment_list">
+        <action
+            android:id="@+id/action_appointmentListFragment_to_appointmentEditFragment"
+            app:destination="@id/appointmentEditFragment" />
+        <action
+            android:id="@+id/action_appointmentListFragment_to_appointmentDetailsFragment"
+            app:destination="@id/appointmentDetailsFragment" />
+    </fragment>
+
+    <!-- Appointment Edit Fragment -->
+    <fragment
+        android:id="@+id/appointmentEditFragment"
+        android:name="com.example.mobile.ui.appointment.AppointmentEditFragment"
+        android:label="Edit Animal"
+        tools:layout="@layout/fragment_appointment_edit" />
+    <action
+        android:id="@+id/action_appointmentEditFragment_to_appointmentListFragment"
+        app:destination="@id/appointmentListFragment" />
+
+    <!-- Appointment Home Fragment -->
+    <fragment
+        android:id="@+id/appointmentHomeFragment"
+        android:name="com.example.mobile.ui.appointment.AppointmentHomeFragment"
+        android:label="Appointment Home"
+        tools:layout="@layout/fragment_appointment_home">
+        <action
+            android:id="@+id/action_appointmentHomeFragment_to_appointmentFragment"
+            app:destination="@id/nav_appointment" />
+        <action
+            android:id="@+id/action_appointmentHomeFragment_to_appointmentListFragment"
+            app:destination="@id/appointmentListFragment" />
+    </fragment>
+
+
+
+    <!-- Appointment Details Fragment -->
+    <fragment
+        android:id="@+id/appointmentDetailsFragment"
+        android:name="com.example.mobile.ui.appointment.AppointmentDetailsFragment"
+        android:label="Appointment Details"
+        tools:layout="@layout/fragment_appointment_details" />
+
+
+
+
+
+
+</navigation>
