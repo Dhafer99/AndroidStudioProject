@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <!-- SearchView for filtering animals -->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:queryHint="Search by name, species, or age" />
+
+    <!-- TextView for empty state -->
+    <TextView
+        android:id="@+id/textViewEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No animals available"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <!-- RecyclerView for displaying items in a grid -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAnimals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/searchView" />
+
+</RelativeLayout>

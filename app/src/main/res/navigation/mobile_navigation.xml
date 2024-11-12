@@ -151,5 +151,77 @@
         android:name="com.example.mobile.ui.service.affichage.ServiceaffichageFragment"
         android:label="Service Display"
         tools:layout="@layout/fragment_serviceaffichage" />
+    <!-- Animal Home Fragment (Navigation Drawer) -->
+    <fragment
+        android:id="@+id/nav_animal"
+        android:name="com.example.mobile.ui.animal.AnimalHomeFragment"
+        android:label="Animal"
+        tools:layout="@layout/fragment_animal_home">
+
+        <!-- Action to navigate to Add Animal Fragment -->
+        <action
+            android:id="@+id/action_animalHomeFragment_to_animalFragment"
+            app:destination="@id/animalFragment" />
+
+        <!-- Action to navigate to Animal List Fragment -->
+        <action
+            android:id="@+id/action_animalHomeFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+
+        <!-- Action to navigate to Animal Reminder Fragment -->
+        <action
+            android:id="@+id/action_animalHomeFragment_to_animalReminderFragment"
+            app:destination="@id/animalReminderFragment" />
+    </fragment>
+
+    <!-- Animal Fragment -->
+    <fragment
+        android:id="@+id/animalFragment"
+        android:name="com.example.mobile.ui.animal.AnimalFragment"
+        android:label="Animal"
+        tools:layout="@layout/fragment_animal">
+        <action
+            android:id="@+id/action_animalFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+    </fragment>
+
+    <!-- Animal List Fragment -->
+    <fragment
+        android:id="@+id/animalListFragment"
+        android:name="com.example.mobile.ui.animal.AnimalListFragment"
+        android:label="Animal List"
+        tools:layout="@layout/fragment_animal_list">
+        <action
+            android:id="@+id/action_animalListFragment_to_animalEditFragment"
+            app:destination="@id/animalEditFragment" />
+        <action
+            android:id="@+id/action_animalListFragment_to_animalDetailsFragment"
+            app:destination="@id/animalDetailsFragment" />
+    </fragment>
+
+    <!-- Animal Edit Fragment -->
+    <fragment
+        android:id="@+id/animalEditFragment"
+        android:name="com.example.mobile.ui.animal.AnimalEditFragment"
+        android:label="Edit Animal"
+        tools:layout="@layout/fragment_animal_edit">
+        <action
+            android:id="@+id/action_animalEditFragment_to_animalListFragment"
+            app:destination="@id/animalListFragment" />
+    </fragment>
+
+    <!-- Animal Details Fragment -->
+    <fragment
+        android:id="@+id/animalDetailsFragment"
+        android:name="com.example.mobile.ui.animal.AnimalDetailsFragment"
+        android:label="Animal Details"
+        tools:layout="@layout/fragment_animal_details" />
+
+    <!-- Animal Reminder Fragment -->
+    <fragment
+        android:id="@+id/animalReminderFragment"
+        android:name="com.example.mobile.ui.animal.AnimalReminderFragment"
+        android:label="Animal Reminder"
+        tools:layout="@layout/fragment_reminder" />
 
 </navigation>

@@ -8,6 +8,7 @@ import com.example.mobile.DAO.FoodDao;
 import com.example.mobile.DAO.PlanFoodCrossRefDao;
 import com.example.mobile.DAO.PlanFoodDao;
 import com.example.mobile.DAO.ServiceDao;
+import com.example.mobile.DAO.AnimalDao;
 import com.example.mobile.DAO.UserDao;
 import com.example.mobile.database.relations.PlanFoodCrossRef;
 @TypeConverters
@@ -26,7 +27,7 @@ public abstract class PetCareDatabase extends RoomDatabase {
     // public abstract AnimalDao animalDao();
    public abstract ServiceDao serviceDao();
    // public abstract FoodDao foodDao();
-   // public abstract AnimalDao animalDao();
+   public abstract AnimalDao animalDao();
     //public abstract AppointmentDao appointmentDao();
 
 }

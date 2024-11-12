@@ -22,10 +22,14 @@ import com.example.mobile.MainActivity; // Main activity with sidebar
 import com.example.mobile.R;
 import com.example.mobile.databinding.FragmentLoginBinding;
 import com.example.mobile.database.repositories.UserRepository;
+
 import com.example.mobile.ui.password.ForgotPasswordFragment;
 
 
 import java.util.Objects;
+
+
+import com.example.mobile.ui.login.LoginViewModel;
 
 public class LoginFragment extends Fragment {
 
@@ -44,7 +48,9 @@ public class LoginFragment extends Fragment {
             @Override
             @NonNull
             public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+
                 return (T) new LoginViewModel(requireActivity().getApplication(),userRepository);
+
             }
         }).get(LoginViewModel.class);
 
