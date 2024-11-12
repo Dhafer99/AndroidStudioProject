@@ -71,7 +71,7 @@
         <!-- Add navigation to serviceaffichageFragment -->
         <action
             android:id="@+id/action_nav_service_fares_to_serviceaffichageFragment"
-            app:destination="@id/serviceaffichageFragment" />
+            app:destination="@id/ServiceaffichageFragment" />
     </fragment>
 
     <fragment
@@ -82,8 +82,8 @@
 
     <!-- Add the serviceaffichageFragment definition -->
     <fragment
-        android:id="@+id/serviceaffichageFragment"
-        android:name="com.example.mobile.ui.service.affichage.serviceaffichageFragment"
+        android:id="@+id/ServiceaffichageFragment"
+        android:name="com.example.mobile.ui.service.affichage.ServiceaffichageFragment"
         android:label="Service Display"
         tools:layout="@layout/fragment_serviceaffichage" />
 
