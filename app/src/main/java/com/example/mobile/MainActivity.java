@@ -53,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(u.getName());
             }
 
+            //clear database
+            //DatabaseProvider.clearAllData();
+
 
             // exemple insert plan with food
-            FoodEntity food = new FoodEntity();
+            /*FoodEntity food = new FoodEntity();
             food.setNom("Pomme");
             food.setDescription("Une pomme fraîche");
             food.setImage("url_image_pomme");
@@ -80,21 +83,21 @@ public class MainActivity extends AppCompatActivity {
             planFoodDao.insertPlanFoodCrossRef(crossRef);
 
             Log.d("Insertion", "Insertion réussie avec FoodEntity ID: " + foodId + " et PlanFood ID: " + planId);
-
+*/
         }).start();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .setAnchorView(R.id.fab).show();
             }
-        });
+        });*/
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

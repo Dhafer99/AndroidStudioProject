@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/user_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bubble_user"
+        android:padding="12dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="4dp"
+        android:text="Utilisateur"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/bot_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bubble_bot"
+        android:padding="12dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:text="Bot"
+        android:textColor="@android:color/black" />
+</LinearLayout>

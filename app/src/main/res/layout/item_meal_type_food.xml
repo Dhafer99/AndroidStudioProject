@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Meal Type (e.g., "Breakfast", "Dinner") -->
+    <TextView
+        android:id="@+id/meal_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:text="Meal Type"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/yellow_rounded_background" />
+
+    <!-- RecyclerView to display food items under each meal type -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_foods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false" />
+</LinearLayout>

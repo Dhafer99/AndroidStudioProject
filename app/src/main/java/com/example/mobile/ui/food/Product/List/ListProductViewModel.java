@@ -1,20 +1,32 @@
 package com.example.mobile.ui.food.Product.List;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class ListProductViewModel extends ViewModel {
+import com.example.mobile.database.FoodEntity;
+import com.example.mobile.database.repositories.FoodRepository;
 
-    private final MutableLiveData<String> text;
+import java.util.List;
 
-    public ListProductViewModel() {
-        text = new MutableLiveData<>();
-        text.setValue("Food");
+public class ListProductViewModel extends AndroidViewModel {
+    private final FoodRepository foodRepository;
+    private final LiveData<List<FoodEntity>> allFoods;
+
+    public ListProductViewModel(Application application) {
+        super(application);
+        foodRepository = new FoodRepository(application);
+        allFoods = foodRepository.getAllFoods();
     }
 
-    public LiveData<String> getText() {
-        return text;
+    public LiveData<List<FoodEntity>> getAllFoods() {
+        return allFoods;
+    }
+
+    public void deleteFood(FoodEntity foodEntity) {
+        foodRepository.deleteFood(foodEntity);
     }
 }
+
 

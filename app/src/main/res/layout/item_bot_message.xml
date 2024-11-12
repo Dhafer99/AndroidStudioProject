@@ -1,0 +1,17 @@
+<!-- res/layout/item_bot_message.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/bubble_bot"
+    android:layout_margin="4dp">
+
+    <TextView
+        android:id="@+id/bot_response_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"/>
+</LinearLayout>

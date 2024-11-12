@@ -58,4 +58,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/food" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/chat"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_chat_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

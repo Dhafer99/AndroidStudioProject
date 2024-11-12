@@ -1,0 +1,17 @@
+<!-- res/layout/item_user_message.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@drawable/bubble_user"
+    android:layout_margin="4dp">
+
+    <TextView
+        android:id="@+id/user_message_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
+</LinearLayout>

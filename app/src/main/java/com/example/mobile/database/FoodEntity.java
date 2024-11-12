@@ -13,9 +13,9 @@ public class FoodEntity {
     private String description;
     private String image;
     private String type;
-    private String categorie;
+ /*   private String categorie;
     private int quantite;
-    private String unite;
+    private String unite;*/
 
 
     public long getFoodId() {
@@ -58,27 +58,5 @@ public class FoodEntity {
         this.type = type;
     }
 
-    public String getCategorie() {
-        return categorie;
-    }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
-    public String getUnite() {
-        return unite;
-    }
-
-    public void setUnite(String unite) {
-        this.unite = unite;
-    }
 }

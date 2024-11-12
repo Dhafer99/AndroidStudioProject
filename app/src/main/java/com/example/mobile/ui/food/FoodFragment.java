@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 
 import com.example.mobile.R;
 import com.example.mobile.databinding.FragmentFoodBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class FoodFragment extends Fragment {
 
@@ -40,6 +41,16 @@ public class FoodFragment extends Fragment {
 
         button2.setOnClickListener(v -> {
             navController.navigate(R.id.action_foodFragment_to_foodProductFragment);
+        });
+
+        FloatingActionButton btnAdd = binding.fabChat;
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the add page
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.action_foodFragment_to_chatFragment);
+            }
         });
 
 

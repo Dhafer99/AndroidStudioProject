@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- EditText pour saisir le message de l'utilisateur -->
+
+    <EditText
+        android:id="@+id/user_message_edit_text"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_margin="6dp"
+        android:padding="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="Send a message"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="109dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/purple_200"
+        android:text="Send" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messages_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

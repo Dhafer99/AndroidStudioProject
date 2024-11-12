@@ -2,7 +2,9 @@ package com.example.mobile.database.relations;
 
 import androidx.room.Entity;
 
+
 @Entity(primaryKeys = {"foodId", "planId"})
+
 public class PlanFoodCrossRef {
     public long foodId;
     public long planId;
