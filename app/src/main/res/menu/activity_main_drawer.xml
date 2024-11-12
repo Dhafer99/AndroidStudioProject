@@ -16,15 +16,30 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_login"
-            android:icon="@mipmap/usericon_foreground"
-            android:title="Login" />
+
 
         <item
-            android:id="@+id/nav_signup"
+            android:id="@+id/nav_update"
             android:icon="@mipmap/usericon_foreground"
-            android:title="Signup" />
+            android:title="Update Info" />
+
+        <item
+            android:id="@+id/nav_vet"
+            android:icon="@mipmap/usericon_foreground"
+            android:title="Vet Map" />
+
+        <item
+            android:id="@+id/nav_fragment"
+            android:icon="@mipmap/usericon_foreground"
+            android:title="Vet List" />
+        <item
+            android:id="@+id/nav_admin_item"
+            android:icon="@drawable/admin"
+            android:title="Admin Dashboard"
+            android:visible="false" />
+
+
+
 
         <item
             android:id="@+id/nav_food"
@@ -32,4 +47,7 @@
             android:title="@string/menu_food" />
 
     </group>
+
+    <!-- Logout Item at the Bottom -->
+
 </menu>

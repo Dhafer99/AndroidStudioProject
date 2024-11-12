@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/drawable/button_background.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FF5733"/> <!-- Replace with your desired color -->
-    <corners android:radius="8dp" /> <!-- Optional: add rounded corners -->
+    <solid android:color="#D4A017" /> <!-- Dark Yellow button background -->
+    <corners android:radius="12dp" />
 </shape>

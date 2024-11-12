@@ -7,7 +7,7 @@ import com.example.mobile.DAO.PlanFoodDao;
 import com.example.mobile.DAO.UserDao;
 import com.example.mobile.database.relations.PlanFoodCrossRef;
 
-@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class, PlanFoodEntity.class, PlanFoodCrossRef.class}, version = 4)
+@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class, PlanFoodEntity.class, PlanFoodCrossRef.class}, version = 1)
 public abstract class PetCareDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract PlanFoodDao planFoodDao();

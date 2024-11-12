@@ -34,6 +34,29 @@
         android:name="com.example.mobile.ui.signup.SignupFragment"
         android:label="Login"
         tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/nav_update"
+        android:name="com.example.mobile.ui.update.UserInfoModificationFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_user_info_modification" />
+    <fragment
+        android:id="@+id/nav_vet"
+        android:name="com.example.mobile.ui.vet_map.VetMapFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_vet_map" />
+
+    <fragment
+        android:id="@+id/nav_fragment"
+        android:name="com.example.mobile.ui.vet_list.VetListFragment"
+        android:label="Update"
+        tools:layout="@layout/fragment_vet_list" />
+
+    <fragment
+        android:id="@+id/nav_admin_item"
+        android:name="com.example.mobile.ui.admin.AdminDashboardPlaceholderFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_placeholder" />
+
 
 
     <fragment
