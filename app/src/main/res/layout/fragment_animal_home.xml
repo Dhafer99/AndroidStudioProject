@@ -25,11 +25,10 @@
         android:fontFamily="sans-serif"
         android:textSize="27sp"
         android:textStyle="bold"
-
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="32dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
 
     <!-- Add Animal Button -->
     <Button
@@ -54,6 +53,22 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFC300"
         android:text="Animal List"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:padding="12dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonAddReminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Add Reminder Button -->
+    <Button
+        android:id="@+id/buttonAddReminder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFC300"
+        android:text="Set Reminder"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:layout_margin="16dp"

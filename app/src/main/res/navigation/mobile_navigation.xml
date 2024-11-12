@@ -40,32 +40,27 @@
         android:label="Signup"
         tools:layout="@layout/fragment_signup" />
 
-    <!-- Animal Fragment in Navigation Drawer -->
+    <!-- Animal Home Fragment (Navigation Drawer) -->
     <fragment
         android:id="@+id/nav_animal"
         android:name="com.example.mobile.ui.animal.AnimalHomeFragment"
         android:label="Animal"
         tools:layout="@layout/fragment_animal_home">
+
+        <!-- Action to navigate to Add Animal Fragment -->
         <action
             android:id="@+id/action_animalHomeFragment_to_animalFragment"
             app:destination="@id/animalFragment" />
-        <action
-            android:id="@+id/action_animalHomeFragment_to_animalListFragment"
-            app:destination="@id/animalListFragment" />
-    </fragment>
 
-    <!-- Animal Home Fragment -->
-    <fragment
-        android:id="@+id/animalHomeFragment"
-        android:name="com.example.mobile.ui.animal.AnimalHomeFragment"
-        android:label="Animal Home"
-        tools:layout="@layout/fragment_animal_home">
-        <action
-            android:id="@+id/action_animalHomeFragment_to_animalFragment"
-            app:destination="@id/nav_animal" />
+        <!-- Action to navigate to Animal List Fragment -->
         <action
             android:id="@+id/action_animalHomeFragment_to_animalListFragment"
             app:destination="@id/animalListFragment" />
+
+        <!-- Action to navigate to Animal Reminder Fragment -->
+        <action
+            android:id="@+id/action_animalHomeFragment_to_animalReminderFragment"
+            app:destination="@id/animalReminderFragment" />
     </fragment>
 
     <!-- Animal Fragment -->
@@ -110,5 +105,12 @@
         android:name="com.example.mobile.ui.animal.AnimalDetailsFragment"
         android:label="Animal Details"
         tools:layout="@layout/fragment_animal_details" />
+
+    <!-- Animal Reminder Fragment -->
+    <fragment
+        android:id="@+id/animalReminderFragment"
+        android:name="com.example.mobile.ui.animal.AnimalReminderFragment"
+        android:label="Animal Reminder"
+        tools:layout="@layout/fragment_reminder" />
 
 </navigation>

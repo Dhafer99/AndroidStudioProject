@@ -1,0 +1,37 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextReminderTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Reminder Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextReminderDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Reminder Description"
+        app:layout_constraintTop_toBottomOf="@id/editTextReminderTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Add DatePicker and TimePicker for selecting date and time here -->
+
+    <Button
+        android:id="@+id/buttonSaveReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Reminder"
+        app:layout_constraintTop_toBottomOf="@id/editTextReminderDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

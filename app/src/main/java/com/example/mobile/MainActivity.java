@@ -1,6 +1,9 @@
 package com.example.mobile;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -85,4 +88,45 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration) || super.onSupportNavigateUp();
     }
+
+    private void createNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel medicationChannel = new NotificationChannel(
+                    "MEDICATION_CHANNEL",
+                    "Medication Reminders",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            medicationChannel.setDescription("This channel is for medication reminders");
+
+            NotificationChannel appointmentChannel = new NotificationChannel(
+                    "APPOINTMENT_CHANNEL",
+                    "Appointment Alerts",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            appointmentChannel.setDescription("This channel is for appointment reminders");
+
+            NotificationChannel feedingChannel = new NotificationChannel(
+                    "FEEDING_CHANNEL",
+                    "Feeding Reminders",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            feedingChannel.setDescription("This channel is for feeding reminders");
+
+            NotificationChannel activityChannel = new NotificationChannel(
+                    "ACTIVITY_CHANNEL",
+                    "Activity Reminders",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            activityChannel.setDescription("This channel is for activity reminders");
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(medicationChannel);
+                manager.createNotificationChannel(appointmentChannel);
+                manager.createNotificationChannel(feedingChannel);
+                manager.createNotificationChannel(activityChannel);
+            }
+        }
+    }
+
 }
