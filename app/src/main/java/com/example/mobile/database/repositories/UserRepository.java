@@ -49,6 +49,10 @@ public class UserRepository {
         return userDao.getUserById(id);
 
     }
+
+    public Future<List<UserEntity>> getUserListFuture() {
+        return executorService.submit(userDao::getNormalUserList);
+    }
     public Future<List<UserEntity>> getVeterinarianUsers() {
         return executorService.submit(userDao::getVeterinarianUsers);
     }
@@ -58,5 +62,26 @@ public class UserRepository {
     public void updateUser(UserEntity user) {
         executorService.execute(() -> userDao.updateUser(user));
     }
+
+    // In UserRepository.java
+    public void updateUserPassword(String email, String newPassword) {
+        executorService.execute(() -> {
+            UserEntity user = userDao.getUserByEmail(email);
+            if (user != null) {
+                user.setPassword(newPassword); // Store plain text or hashed based on requirements
+                userDao.updateUser(user); // updateUser should be implemented in your DAO
+            }
+        });
+    }
+    // Asynchronous method to get the user role by userId
+    public Future<String> getUserRoleById(int userId) {
+        return executorService.submit(() -> userDao.getUserRoleById(userId));
+    }
+
+    public Future<String> getUserTypeById(int userId) {
+        return executorService.submit(() -> userDao.getUserTypeById(userId));
+    }
+
+
 
 }

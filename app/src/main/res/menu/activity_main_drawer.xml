@@ -31,6 +31,11 @@
             android:id="@+id/nav_fragment"
             android:icon="@mipmap/usericon_foreground"
             android:title="Vet List" />
+        <item
+            android:id="@+id/nav_admin_item"
+            android:icon="@drawable/admin"
+            android:title="Admin Dashboard"
+            android:visible="false" />
 a
 
     </group>

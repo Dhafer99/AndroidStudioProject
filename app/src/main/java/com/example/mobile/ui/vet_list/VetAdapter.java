@@ -15,27 +15,30 @@ public class VetAdapter extends RecyclerView.Adapter<VetAdapter.VetViewHolder> {
 
     private final List<UserEntity> vetList;
     private final OnVetClickListener listener;
+    private final String userRole; // Store the user role to conditionally adjust button behavior
 
     public interface OnVetClickListener {
-        void onViewRouteClick(UserEntity vet);
+        void onViewRouteClick(UserEntity vet);  // For veterinarian role
+        void onViewUserClick(UserEntity user);  // For regular user role
     }
 
-    public VetAdapter(List<UserEntity> vetList, OnVetClickListener listener) {
+    public VetAdapter(List<UserEntity> vetList, OnVetClickListener listener, String userRole) {
         this.vetList = vetList;
         this.listener = listener;
+        this.userRole = userRole;
     }
 
     @NonNull
     @Override
     public VetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_vet_item, parent, false);
         return new VetViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VetViewHolder holder, int position) {
         UserEntity vet = vetList.get(position);
-        holder.bind(vet, listener);
+        holder.bind(vet, listener, userRole);
     }
 
     @Override
@@ -53,9 +56,17 @@ public class VetAdapter extends RecyclerView.Adapter<VetAdapter.VetViewHolder> {
             btnView = itemView.findViewById(R.id.btnView);
         }
 
-        public void bind(UserEntity vet, OnVetClickListener listener) {
-            textUserName.setText(vet.getName());
-            btnView.setOnClickListener(v -> listener.onViewRouteClick(vet));
+        public void bind(UserEntity user, OnVetClickListener listener, String userRole) {
+            textUserName.setText(user.getName());
+
+            // Set button behavior based on the user role
+            if ("Veterinarian".equals(userRole)) {
+                btnView.setText("View User");
+                btnView.setOnClickListener(v -> listener.onViewUserClick(user)); // Regular user data view
+            } else {
+                btnView.setText("View Vet Map");
+                btnView.setOnClickListener(v -> listener.onViewRouteClick(user)); // Veterinarian route view
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ import com.example.mobile.Session.SessionManager;
 import com.example.mobile.database.DatabaseProvider;
 import com.example.mobile.database.PetCareDatabase;
 import com.example.mobile.database.UserEntity;
+import com.example.mobile.database.repositories.UserRepository;
 import com.example.mobile.ui.login.LoginSignupActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -32,12 +33,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mobile.databinding.ActivityMainBinding;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
+
+
+    private UserRepository userRepository ;
     private final MutableLiveData<Boolean> logoutLiveData = new MutableLiveData<>();
 
     @Override
@@ -46,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         PetCareDatabase db = DatabaseProvider.getDatabase(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
+
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +71,29 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_login)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_login,R.id.nav_admin_item)
                 .setOpenableLayout(drawer)
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        // Check user role and show/hide the admin item
+
+        // Initialize SessionManager
+        SessionManager sessionManager = new SessionManager(this);
+        MenuItem adminItem = navigationView.getMenu().findItem(R.id.nav_admin_item);
+
+        String userRole = sessionManager.getUserRole(); // Assuming this returns "Admin" or other roles
+
+        if ("Admin".equals(userRole)) {
+            adminItem.setVisible(true); // Show admin item if the role is "Admin"
+        } else {
+            adminItem.setVisible(false); // Hide admin item for other roles
+        }
+
 
 
         // Observe logoutLiveData for logout actions
@@ -100,18 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-      /*  if (logoutItem != null) {
-            logoutItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(@NonNull MenuItem item) {
-                    Toast.makeText(MainActivity.this, "Logout successful!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, LoginSignupActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                }
-            });
-        }*/
+
 
     }
     private void logout() {
@@ -122,7 +137,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.main, menu);
+
+        // Check user role and show/hide the admin item
+        MenuItem adminItem = menu.findItem(R.id.nav_admin_item);
+
+        // Initialize SessionManager or repository to check the user role
+      /*  SessionManager sessionManager = new SessionManager(this);
+
+
+
+
+
+            String userRole = sessionManager.getUserRole(); // Assuming getUserRole() method returns either "User" or "Veterinarian"
+        if (adminItem != null) {
+            if ("Admin".equals(userRole)) {
+                adminItem.setVisible(true); // Show admin item if the role is "Admin"
+            } else {
+                adminItem.setVisible(false); // Hide admin item for other roles
+            }
+        } else {
+            // Log or handle the case where adminItem is not found
+            Log.e("MainActivity", "Admin menu item not found in the menu");
+        }*/
+
+
         return true;
     }
 

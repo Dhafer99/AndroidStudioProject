@@ -112,6 +112,16 @@
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp" />
+            <TextView
+                android:id="@+id/forgotPasswordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -168,6 +178,31 @@
                 android:hint="Phone Number"
                 android:inputType="phone"
                 android:padding="12dp" />
+
+
+            <RadioGroup
+                android:id="@+id/roleRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/input_background"
+                android:padding="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_veterinarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Veterinarian"
+                    android:layout_marginEnd="16dp" />
+
+                <RadioButton
+                    android:id="@+id/radio_normal_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Normal User" />
+            </RadioGroup>
 
             <Button
                 android:id="@+id/signUpButton"

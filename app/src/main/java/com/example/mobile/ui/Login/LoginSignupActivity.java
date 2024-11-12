@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.mobile.MainActivity;
 import com.example.mobile.R;
@@ -21,19 +26,29 @@ public class LoginSignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // Initialize session manager
         SessionManager sessionManager = new SessionManager(this);
 
         // Check if user is already logged in
         if (sessionManager.isLoggedIn()) {
-            // Redirect to main activity if already logged in
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            finish(); // Close the login activity
-            return; // Exit onCreate to avoid executing any further login setup
+            finish();
+            return;
         }
 
         setContentView(R.layout.activity_login_signup);
+
+        // Set up toolbar as the app bar
+        Toolbar toolbar = findViewById(R.id.toolbar_login);
+        setSupportActionBar(toolbar);
+
+        // Ensure layout is fully set up before getting the NavController
+        findViewById(R.id.nav_host_fragment).getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+            NavigationUI.setupActionBarWithNavController(this, navController);
+        });
 
         // Request location permissions at startup
         requestLocationPermissions();
@@ -53,12 +68,17 @@ public class LoginSignupActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, proceed with accessing location
                 Toast.makeText(this, "Location permission granted", Toast.LENGTH_SHORT).show();
             } else {
-                // Permission denied, show a message to the user
                 Toast.makeText(this, "Location permission is required to access location features.", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    // Handle the Up button in the toolbar to navigate back
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
 }

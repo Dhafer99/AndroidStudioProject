@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 public class VetMapFragment extends Fragment implements OnMapReadyCallback {
 
     // Other class variables
-    private LatLng currentLocation = new LatLng(36.8066233, 10.1792283);
+    private LatLng currentLocation = new LatLng(36.853563, 10.207563);
     private GoogleMap googleMap;
     private UserRepository userRepository;
 
@@ -69,31 +69,32 @@ public class VetMapFragment extends Fragment implements OnMapReadyCallback {
 
         // Retrieve the latitude and longitude passed as arguments
         Bundle args = getArguments();
-       /* if (args != null) {
+        if (args != null) {
             double vetLat = args.getDouble("lat");
             double vetLng = args.getDouble("lng");
             LatLng vetLocation = new LatLng(vetLat, vetLng);
 
+            // Draw route to a specific veterinarian location (example: first vet in the list)
+            Executors.newSingleThreadExecutor().execute(() -> {
+                List<UserEntity> vets = userRepository.getAllUsers();
+                if (!vets.isEmpty()) {
+
+
+
+                    getDirections(currentLocation, vetLocation);
+                }
+            });
             // Draw route or marker to vetLocation
-            getDirections(currentLocation, vetLocation); // Assuming getDirections method is implemented
-        }*/
-
-        // Draw route to a specific veterinarian location (example: first vet in the list)
-        Executors.newSingleThreadExecutor().execute(() -> {
-            List<UserEntity> vets = userRepository.getAllUsers();
-            if (!vets.isEmpty()) {
-                LatLng vetLocation = new LatLng(vets.get(2).getLatitude(), vets.get(2).getLongitude());
+          //  getDirections(currentLocation, vetLocation); // Assuming getDirections method is implemented
+        }
 
 
-                getDirections(currentLocation, vetLocation);
-            }
-        });
 
     }
 
     private void getDirections(LatLng origin, LatLng destination) {
         // Build the URL for the Directions API request
-        String apiKey = "KEY"; // Replace with your actual API key
+        String apiKey = "AIzaSyANXKKudj1lZSqbHIuPAJeODvR7DWaLsmM"; // Replace with your actual API key
         String url = "https://maps.googleapis.com/maps/api/directions/json?origin="
                 + origin.latitude + "," + origin.longitude
                 + "&destination=" + destination.latitude + "," + destination.longitude

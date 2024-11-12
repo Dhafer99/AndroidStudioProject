@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.mobile.AdminDashboardActivity;
 import com.example.mobile.BlockedUserActivity;
@@ -19,6 +22,7 @@ import com.example.mobile.MainActivity; // Main activity with sidebar
 import com.example.mobile.R;
 import com.example.mobile.databinding.FragmentLoginBinding;
 import com.example.mobile.database.repositories.UserRepository;
+import com.example.mobile.ui.password.ForgotPasswordFragment;
 
 
 import java.util.Objects;
@@ -34,6 +38,7 @@ public class LoginFragment extends Fragment {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         UserRepository userRepository = new UserRepository(requireContext());
         loginViewModel = new ViewModelProvider(this, new ViewModelProvider.Factory() {
             @Override
@@ -42,6 +47,7 @@ public class LoginFragment extends Fragment {
                 return (T) new LoginViewModel(requireActivity().getApplication(),userRepository);
             }
         }).get(LoginViewModel.class);
+
 
         viewFlipper = binding.viewFlipper;
         viewFlipper.setInAnimation(getContext(), R.anim.slide_in_right);
@@ -63,6 +69,9 @@ public class LoginFragment extends Fragment {
             String email = binding.emailEditText.getText().toString().trim();
             String password = binding.passwordEditText.getText().toString().trim();
             loginViewModel.login(email, password);
+        });
+        binding.forgotPasswordButton.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
         });
 
         loginViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
@@ -97,13 +106,27 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             }
         });
+        RadioGroup roleRadioGroup = viewFlipper.findViewById(R.id.roleRadioGroup);
 
         binding.signUpButton.setOnClickListener(v -> {
+
+            int selectedRoleId = roleRadioGroup.getCheckedRadioButtonId();
+            String role;
+            if (selectedRoleId == R.id.radio_veterinarian) {
+                role = "Veterinarian";
+            } else if (selectedRoleId == R.id.radio_normal_user) {
+                role = "User";
+            } else {
+
+                Toast.makeText(getContext(), "Please select a role", Toast.LENGTH_SHORT).show();
+                return; // Exit if no role is selected
+            }
+
             String name = binding.signUpName.getText().toString().trim();
             String email = binding.signUpEmail.getText().toString().trim();
             String phone = binding.signUpPhone.getText().toString().trim();
             String password = binding.signUpPassword.getText().toString().trim();
-            loginViewModel.signUp(name, email, phone, password);
+            loginViewModel.signUp(name, email, phone, password,role);
         });
 
         return root;

@@ -52,5 +52,12 @@
         android:label="Update"
         tools:layout="@layout/fragment_vet_list" />
 
+    <fragment
+        android:id="@+id/nav_admin_item"
+        android:name="com.example.mobile.ui.admin.AdminDashboardPlaceholderFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_placeholder" />
+
+
 
 </navigation>

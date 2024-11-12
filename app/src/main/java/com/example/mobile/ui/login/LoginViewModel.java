@@ -47,9 +47,11 @@ public class LoginViewModel extends AndroidViewModel {
                 if (user.getIsBlocked()) {
                     blockedUserLiveData.postValue(user);
                 } else {
-                    sessionManager.createLoginSession(user.getUserId());
+                    sessionManager.createLoginSession(user.getUserId(),user.getRole());
 
                     if (Objects.equals(user.getRole(), "Admin")) {
+
+
                         userLiveData.postValue(user); // For admin
                     } else if (Objects.equals(user.getRole(), "User")) {
                         userLiveData.postValue(user); // For regular users
@@ -61,7 +63,7 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
-    public void signUp(String name, String email, String phone, String password) {
+    public void signUp(String name, String email, String phone, String password,String role) {
         // Check if location permission is granted before calling this method
         // Check location permissions before proceeding
         if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -87,9 +89,9 @@ public class LoginViewModel extends AndroidViewModel {
                             newUser.setEmail(email);
                             newUser.setPhoneNumber(phone);
                             newUser.setPassword(password);
-                            newUser.setRole("User");
+                            newUser.setType(role);
                             newUser.setIsBlocked(false);
-                            newUser.setType("Veterinaire");
+                           newUser.setRole("User");
 
                             // Set latitude and longitude if location is available
                             if (location != null) {
