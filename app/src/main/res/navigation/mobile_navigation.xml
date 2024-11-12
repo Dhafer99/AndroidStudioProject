@@ -58,7 +58,6 @@
         tools:layout="@layout/fragment_placeholder" />
 
 
-
     <fragment
         android:id="@+id/nav_food"
         android:name="com.example.mobile.ui.food.FoodFragment"
@@ -126,5 +125,31 @@
         android:name="com.example.mobile.ui.food.chatbot.ChatFragment"
         android:label="Chat" />
 
+    <fragment
+        android:id="@+id/nav_service_fares"
+        android:name="com.example.mobile.ui.service.serviceAddFragment"
+        android:label="Service"
+        tools:layout="@layout/fragment_serviceadd">
+        <action
+            android:id="@+id/action_nav_service_fares_to_nav_ajoutService"
+            app:destination="@id/nav_ajoutService" />
+        <!-- Add navigation to serviceaffichageFragment -->
+        <action
+            android:id="@+id/action_nav_service_fares_to_serviceaffichageFragment"
+            app:destination="@id/ServiceaffichageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_ajoutService"
+        android:name="com.example.mobile.ui.service.Ajout.serviceajoutFragment"
+        android:label="Add Service"
+        tools:layout="@layout/fragment_serviceajout" />
+
+    <!-- Add the serviceaffichageFragment definition -->
+    <fragment
+        android:id="@+id/ServiceaffichageFragment"
+        android:name="com.example.mobile.ui.service.affichage.ServiceaffichageFragment"
+        android:label="Service Display"
+        tools:layout="@layout/fragment_serviceaffichage" />
 
 </navigation>

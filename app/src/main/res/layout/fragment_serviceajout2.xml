@@ -1,0 +1,108 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Event Title Input -->
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name" />
+
+        <!-- Event Description Input -->
+        <EditText
+            android:id="@+id/descriptionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description" />
+
+        <!-- Event Phone Input -->
+        <EditText
+            android:id="@+id/phoneText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:inputType="phone" />
+
+        <!-- Event Place Input -->
+        <EditText
+            android:id="@+id/placeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Place"
+            android:inputType="textMultiLine" />
+
+        <!-- Event Price Input -->
+        <EditText
+            android:id="@+id/priceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:inputType="number" />
+
+        <!-- Start Date Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Date" />
+
+        <!-- Start Date Picker -->
+        <DatePicker
+            android:id="@+id/start_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            android:datePickerMode="spinner" />
+
+        <!-- End Date Label -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="End Date" />
+
+        <!-- End Date Picker -->
+        <DatePicker
+            android:id="@+id/end_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            android:datePickerMode="spinner" />
+
+        <!-- Upload Images Button -->
+        <Button
+            android:id="@+id/uploadImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Images" />
+
+        <!-- Add Service Button -->
+        <Button
+            android:id="@+id/ajouterBtn"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FFC300"
+            android:text="Add New Service"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- RecyclerView for Image Previews -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewImagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+</ScrollView>

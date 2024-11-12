@@ -45,6 +45,10 @@
             android:id="@+id/nav_food"
             android:icon="@drawable/pilon"
             android:title="@string/menu_food" />
+        <item
+            android:id="@+id/nav_service_fares"
+            android:icon="@drawable/livraison2"
+            android:title="Service" />
 
     </group>
 

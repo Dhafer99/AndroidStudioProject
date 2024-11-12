@@ -18,6 +18,7 @@ public class FoodEntity {
     private String unite;*/
 
 
+
     public long getFoodId() {
         return foodId;
     }
