@@ -55,6 +55,56 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PetCareDatabase db = DatabaseProvider.getDatabase(this);
+        PlanFoodDao planFoodDao = db.planFoodDao();
+        // Access DAOs to perform database operations
+        new Thread(() -> {
+            // Example: Insert a user
+            UserEntity user = new UserEntity();
+            user.setName("John Doe");
+            user.setEmail("john@example.com");
+            user.setPhoneNumber("123456789");
+            user.setPassword("123");
+            db.userDao().insertUser(user);
+
+            // Example: Fetch all users
+            List<UserEntity> users = db.userDao().getAllUsers();
+            for (UserEntity u : users) {
+                System.out.println(u.getName());
+            }
+
+            //clear database
+            //DatabaseProvider.clearAllData();
+
+
+            // exemple insert plan with food
+            /*FoodEntity food = new FoodEntity();
+            food.setNom("Pomme");
+            food.setDescription("Une pomme fraîche");
+            food.setImage("url_image_pomme");
+            food.setType("Fruit");
+            food.setCategorie("Fruits");
+            food.setQuantite(1);
+            food.setUnite("Pièce");
+
+            long foodId = planFoodDao.insertFood(food);
+
+            // Création d'un objet PlanFood
+            PlanFoodEntity plan = new PlanFoodEntity();
+            plan.setJour("Lundi");
+            plan.setType("Petit déjeuner");
+
+            long planId = planFoodDao.insertPlan(plan);
+
+            // Création d'un objet PlanFoodCrossRef pour lier food et plan
+            PlanFoodCrossRef crossRef = new PlanFoodCrossRef();
+            crossRef.setFoodId(foodId);
+            crossRef.setPlanId(planId);
+            planFoodDao.insertPlanFoodCrossRef(crossRef);
+
+            Log.d("Insertion", "Insertion réussie avec FoodEntity ID: " + foodId + " et PlanFood ID: " + planId);
+*/
+        }).start();
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -63,14 +113,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+        /*binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .setAnchorView(R.id.fab).show();
             }
-        });
+        });*/
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

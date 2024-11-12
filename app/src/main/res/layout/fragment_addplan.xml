@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_add2"
+    tools:context=".ui.food.Plan.Add.AddPlanFragment">
+
+    <!-- Titre principal -->
+    <TextView
+        android:id="@+id/text_weekly_food_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:background="#C4FFFFFF"
+        android:gravity="center"
+        android:text="@string/add_food_plan"
+        android:textColor="#FFBF00"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/dropdown_type"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="@string/select_the_type"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_descriptionfood2" />
+
+    <AutoCompleteTextView
+        android:id="@+id/dropdown_day"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="@string/select_the_day"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_descriptionfood" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/dropdown_meal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_edittext"
+        android:completionThreshold="1"
+        android:hint="@string/select_the_meal"
+        android:inputType="textAutoComplete|textMultiLine"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/label_descriptionfood3"
+        tools:layout_editor_absoluteX="46dp" />
+
+    <TextView
+        android:id="@+id/label_descriptionfood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="Select Day"
+        android:textColor="#FFBF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_weekly_food_plan" />
+
+    <TextView
+        android:id="@+id/label_descriptionfood2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Type"
+        android:textColor="#FFBF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_day" />
+
+    <TextView
+        android:id="@+id/label_descriptionfood3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Meal"
+        android:textColor="#FFBF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_type" />
+
+    <Button
+        android:id="@+id/addfood_btn"
+        android:layout_width="196dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/button_background"
+        android:text="Save"
+        android:textColorLink="#000000"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_meal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

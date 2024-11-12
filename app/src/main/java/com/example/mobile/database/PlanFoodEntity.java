@@ -10,6 +10,14 @@ public class PlanFoodEntity {
     private String jour;
     private String type;
 
+    public PlanFoodEntity() {
+    }
+
+    public PlanFoodEntity(String jour, String type) {
+        this.jour = jour;
+        this.type = type;
+    }
+
     public long getPlanId() {
         return planId;
     }

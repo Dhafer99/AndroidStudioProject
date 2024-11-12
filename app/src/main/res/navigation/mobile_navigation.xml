@@ -74,19 +74,57 @@
             android:id="@+id/action_foodFragment_to_foodProductFragment"
             app:destination="@id/foodProductFragment" />
 
+        <action
+            android:id="@+id/action_foodFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/foodPlanFragment"
         android:name="com.example.mobile.ui.food.Plan.List.ListPlanFragment"
         android:label="Food Plan"
-        tools:layout="@layout/fragment_listplan" />
+        tools:layout="@layout/fragment_listplan" >
+        <action
+            android:id="@+id/action_listPlanFragment_to_addPlanFragment"
+            app:destination="@id/addPlanFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/foodProductFragment"
         android:name="com.example.mobile.ui.food.Product.List.ListProductFragment"
         android:label="Food Product"
-        tools:layout="@layout/fragment_listproduct" />
+        tools:layout="@layout/fragment_listproduct" >
+        <action
+            android:id="@+id/action_listProductFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPlanFragment"
+        android:name="com.example.mobile.ui.food.Plan.Add.AddPlanFragment"
+        android:label="Add Plan">
+        <action
+            android:id="@+id/action_addPlanFragment_to_listPlanFragment"
+            app:destination="@id/foodPlanFragment"
+            app:popUpTo="@id/nav_host_fragment_content_main"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="com.example.mobile.ui.food.Product.add.AddProductFragment"
+        android:label="Add Product">
+        <action
+            android:id="@+id/action_addProductFragment_to_listProductFragment"
+            app:destination="@id/foodProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.mobile.ui.food.chatbot.ChatFragment"
+        android:label="Chat" />
 
 
 </navigation>

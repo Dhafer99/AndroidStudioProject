@@ -1,0 +1,41 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    app:cardBackgroundColor="#FBEF9D"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="6dp"
+    tools:context=".ui.food.Plan.List.MealTypeAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Meal Type TextView -->
+        <TextView
+            android:id="@+id/textViewMealType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Meal Type"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Food Items TextView -->
+        <TextView
+            android:id="@+id/textViewFoodItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food Items"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

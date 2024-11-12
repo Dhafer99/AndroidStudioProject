@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_list_product"
+    tools:context=".ui.food.Product.List.ListProductFragment">
+
+    <TextView
+        android:id="@+id/text_weekly_food_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="#C4FFFFFF"
+        android:gravity="center"
+        android:text="Add new meal"
+        android:textColor="#FFBF00"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- LinearLayout for input fields -->
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/addProduct_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_weekly_food_plan"
+        app:layout_constraintVertical_bias="0.02"
+        tools:ignore="MissingConstraints">
+
+        <!-- Name Label and EditText -->
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Food Name"
+            android:textColor="#FFBF00"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Enter the name"
+            android:textAlignment="center" />
+
+        <!-- Description Label and EditText -->
+        <TextView
+            android:id="@+id/label_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Description"
+            android:textColor="#FFBF00"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Enter the description"
+            android:textAlignment="center" />
+
+        <!-- Type Label and AutoCompleteTextView -->
+        <TextView
+            android:id="@+id/label_typeproduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Food Type"
+            android:textColor="#FFBF00"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <AutoCompleteTextView
+            android:id="@+id/dropdown_typeproduct"
+            android:layout_width="317dp"
+            android:layout_height="60dp"
+            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/select_the_type"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_description" />
+
+        <!-- Image Section (ImageView and Button in same row) -->
+        <TextView
+            android:id="@+id/label_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Food Image"
+            android:textColor="#FFBF00"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Horizontal LinearLayout for ImageView and Upload Button -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp">
+
+            <!-- ImageView for displaying image -->
+            <ImageView
+                android:id="@+id/food_image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_imageview"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu_camera" />
+
+            <!-- Button to upload an image -->
+            <Button
+                android:id="@+id/upload_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Image" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addProduct_btn"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="188dp"
+        android:background="@drawable/button_background"
+        android:text="Save"
+        android:textColorLink="#000000"
+        app:backgroundTint="@color/purple_200"
+        app:icon="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

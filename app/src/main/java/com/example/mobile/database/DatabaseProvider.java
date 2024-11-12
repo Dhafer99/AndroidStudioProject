@@ -2,8 +2,13 @@ package com.example.mobile.database;
 import android.content.Context;
 import androidx.room.Room;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class DatabaseProvider {
     private static volatile PetCareDatabase INSTANCE;
+
+    private static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
     public static PetCareDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -17,5 +22,17 @@ public class DatabaseProvider {
             }
         }
         return INSTANCE;
+    }
+
+    public static ExecutorService getDatabaseWriteExecutor() {
+        return databaseWriteExecutor;
+    }
+
+    public static void clearAllData() {
+        databaseWriteExecutor.execute(() -> {
+            if (INSTANCE != null) {
+                INSTANCE.clearAllTables();
+            }
+        });
     }
 }
