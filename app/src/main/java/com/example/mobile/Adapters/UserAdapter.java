@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobile.R;
 import com.example.mobile.database.UserEntity;
 import com.example.mobile.database.repositories.UserRepository;
@@ -22,6 +24,7 @@ import java.util.concurrent.Executors;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<UserEntity> users;
+
 
     public UserAdapter(List<UserEntity> users) {
         this.users = users;
@@ -38,6 +41,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         UserEntity user = users.get(position);
+        Glide.with(holder.itemView.getContext())
+                .load(user.getImage()) // Replace with your image source (e.g., URL or file path)
+                .placeholder(R.drawable.baseline_hide_image_24) // Optional placeholder
+                .into(holder.userImageview);
+
         holder.bind(user);
     }
 
@@ -49,6 +57,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public class UserViewHolder extends RecyclerView.ViewHolder {
         private TextView userName;
         private Button btnView, btnBlock, btnDelete;
+        private ImageView userImageview;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             btnView = itemView.findViewById(R.id.btnView);
             btnBlock = itemView.findViewById(R.id.btnBlock);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            userImageview = itemView.findViewById(R.id.user_image);
         }
 
         public void bind(UserEntity user) {

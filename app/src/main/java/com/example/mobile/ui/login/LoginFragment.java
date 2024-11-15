@@ -1,15 +1,23 @@
 package com.example.mobile.ui.login;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
@@ -37,10 +45,25 @@ public class LoginFragment extends Fragment {
     private LoginViewModel loginViewModel;
     private ViewFlipper viewFlipper;
 
+    private static final int IMAGE_PICK_CODE2 = 1000;
+
+    private static final String PREFS_NAME = "UserPrefs";
+    private static final String IMAGE_URI_KEY = "imageUri";
+
+    private Uri selectedImageUri;
+
+    private ImageView userImageView;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        userImageView = root.findViewById(R.id.user_image);
+
+        Button uploadImageButton = root.findViewById(R.id.upload_image_button);
+
+        uploadImageButton.setOnClickListener(v -> openImagePicker());
 
 
         UserRepository userRepository = new UserRepository(requireContext());
@@ -127,15 +150,48 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(), "Please select a role", Toast.LENGTH_SHORT).show();
                 return; // Exit if no role is selected
             }
+                String image = selectedImageUri.toString() ;
+            if (selectedImageUri != null) {
+             image = selectedImageUri.toString(); // Store the image URI
+            }
 
             String name = binding.signUpName.getText().toString().trim();
             String email = binding.signUpEmail.getText().toString().trim();
             String phone = binding.signUpPhone.getText().toString().trim();
             String password = binding.signUpPassword.getText().toString().trim();
-            loginViewModel.signUp(name, email, phone, password,role);
+            loginViewModel.signUp(name, email, phone, password,role,image);
         });
 
         return root;
+    }
+    private void openImagePicker() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, IMAGE_PICK_CODE2);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE2 && data != null) {
+            selectedImageUri = data.getData();
+            userImageView.setImageURI(selectedImageUri);
+
+            // Take persistable URI permission
+            requireContext().getContentResolver().takePersistableUriPermission(
+                    selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            // Save URI to shared preferences
+            saveImageUri(selectedImageUri);
+        }
+    }
+    private void saveImageUri(Uri uri) {
+        SharedPreferences prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putString(IMAGE_URI_KEY, uri.toString()).apply();
+    }
+    private Uri getImageUri() {
+        SharedPreferences prefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String uriString = prefs.getString(IMAGE_URI_KEY, null);
+        return uriString != null ? Uri.parse(uriString) : null;
     }
 
     @Override
@@ -143,4 +199,9 @@ public class LoginFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }
+
+
+
+

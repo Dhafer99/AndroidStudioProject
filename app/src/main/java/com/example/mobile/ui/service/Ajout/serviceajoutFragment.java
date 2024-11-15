@@ -15,6 +15,8 @@ import com.example.mobile.R;
 import com.example.mobile.database.ServiceEntity;
 import com.example.mobile.database.repositories.ServiceRepository;
 
+import java.util.Calendar;
+
 public class serviceajoutFragment extends Fragment {
 
     private EditText nameEditText, descriptionText, phoneText, placeText, priceTextView;
@@ -59,22 +61,41 @@ public class serviceajoutFragment extends Fragment {
         String place = placeText.getText().toString().trim();
         String price = priceTextView.getText().toString().trim();
 
-        // Validate input
+        // Validate input fields
         if (name.isEmpty() || description.isEmpty() || phone.isEmpty() || place.isEmpty() || price.isEmpty()) {
             Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Get the selected start and end date from the DatePicker
-        int startDay = startDatePicker.getDayOfMonth();
-        int startMonth = startDatePicker.getMonth() + 1;
-        int startYear = startDatePicker.getYear();
-        String startDate = startYear + "-" + startMonth + "-" + startDay;
+        // Validate phone number
+        if (!isValidPhone(phone)) {
+            Toast.makeText(getContext(), "Phone number must contain exactly 8 digits", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        int endDay = endDatePicker.getDayOfMonth();
-        int endMonth = endDatePicker.getMonth() + 1;
-        int endYear = endDatePicker.getYear();
-        String endDate = endYear + "-" + endMonth + "-" + endDay;
+        // Get the selected start and end date from the DatePicker
+        Calendar today = Calendar.getInstance();
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.set(startDatePicker.getYear(), startDatePicker.getMonth(), startDatePicker.getDayOfMonth());
+
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.set(endDatePicker.getYear(), endDatePicker.getMonth(), endDatePicker.getDayOfMonth());
+
+        // Validate start date (must be in the future)
+        if (!startCalendar.after(today)) {
+            Toast.makeText(getContext(), "Start date must be in the future", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validate end date (must be after start date)
+        if (!endCalendar.after(startCalendar)) {
+            Toast.makeText(getContext(), "End date must be after start date", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Format dates
+        String startDate = startDatePicker.getYear() + "-" + (startDatePicker.getMonth() + 1) + "-" + startDatePicker.getDayOfMonth();
+        String endDate = endDatePicker.getYear() + "-" + (endDatePicker.getMonth() + 1) + "-" + endDatePicker.getDayOfMonth();
 
         // Create the ServiceEntity object
         ServiceEntity serviceEntity = new ServiceEntity();
@@ -93,12 +114,22 @@ public class serviceajoutFragment extends Fragment {
         Toast.makeText(getContext(), "Service added successfully!", Toast.LENGTH_SHORT).show();
 
         // Clear fields after insertion
+        clearFields();
+    }
+
+    private boolean isValidPhone(String phone) {
+        return phone != null && phone.matches("\\d{8}");
+    }
+
+    private void clearFields() {
         nameEditText.setText("");
         descriptionText.setText("");
         phoneText.setText("");
         placeText.setText("");
         priceTextView.setText("");
-        startDatePicker.updateDate(startYear, startMonth - 1, startDay);
-        endDatePicker.updateDate(endYear, endMonth - 1, endDay);
+
+        Calendar today = Calendar.getInstance();
+        startDatePicker.updateDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
+        endDatePicker.updateDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
     }
 }

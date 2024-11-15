@@ -1,26 +1,39 @@
 package com.example.mobile.ui.vet_list;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobile.R;
 import com.example.mobile.Session.SessionManager;
 import com.example.mobile.database.UserEntity;
 import com.example.mobile.database.repositories.UserRepository;
 import com.example.mobile.ui.vet_map.VetMapFragment;
-import androidx.navigation.NavController;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -29,6 +42,29 @@ public class VetListFragment extends Fragment implements VetAdapter.OnVetClickLi
 
     private RecyclerView recyclerView;
     private UserRepository userRepository;
+
+    // ActivityResultLauncher for selecting an image from gallery
+    private final ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Uri imageUri = result.getData().getData();
+
+                    // Take persistable URI permission
+                    requireContext().getContentResolver().takePersistableUriPermission(
+                            imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    // Copy the image to internal storage and get a URI for it
+                    Uri internalUri = copyImageToInternalStorage(requireContext(), imageUri);
+
+                    // Load the copied image into an ImageView for demonstration
+                    if (internalUri != null) {
+                        ImageView imageView = getView().findViewById(R.id.user_image); // Make sure the ID exists in your layout
+                        Glide.with(this).load(internalUri).into(imageView);
+                    }
+                }
+            }
+    );
 
     @Nullable
     @Override
@@ -46,7 +82,17 @@ public class VetListFragment extends Fragment implements VetAdapter.OnVetClickLi
             e.printStackTrace();
         }
 
+        // Uncomment if you want to trigger the image picker on fragment load for testing
+        // pickImageFromGallery();
+
         return view;
+    }
+
+    private void pickImageFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        galleryIntent.setType("image/*");
+        galleryIntent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        imagePickerLauncher.launch(galleryIntent);
     }
 
     // Method to load list based on user role
@@ -71,7 +117,7 @@ public class VetListFragment extends Fragment implements VetAdapter.OnVetClickLi
             Toast.makeText(getContext(), "No veterinarians found.", Toast.LENGTH_SHORT).show();
         } else {
             SessionManager sessionManager = new SessionManager(getContext());
-            VetAdapter adapter = new VetAdapter(vets, this, sessionManager.getUserRole());
+            VetAdapter adapter = new VetAdapter(getContext(), vets, this, sessionManager.getUserRole());
             recyclerView.setAdapter(adapter);
         }
     }
@@ -85,8 +131,26 @@ public class VetListFragment extends Fragment implements VetAdapter.OnVetClickLi
             Toast.makeText(getContext(), "No users found.", Toast.LENGTH_SHORT).show();
         } else {
             SessionManager sessionManager = new SessionManager(getContext());
-            VetAdapter adapter = new VetAdapter(users, this, sessionManager.getUserRole());
+            VetAdapter adapter = new VetAdapter(getContext(), users, this, sessionManager.getUserRole());
             recyclerView.setAdapter(adapter);
+        }
+    }
+
+    // Utility method to copy the image to internal storage and return a URI
+    private Uri copyImageToInternalStorage(Context context, Uri sourceUri) {
+        try (InputStream inputStream = context.getContentResolver().openInputStream(sourceUri)) {
+            File destinationFile = new File(context.getFilesDir(), "temp_image.jpg");
+            try (OutputStream outputStream = new FileOutputStream(destinationFile)) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+            }
+            return Uri.fromFile(destinationFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

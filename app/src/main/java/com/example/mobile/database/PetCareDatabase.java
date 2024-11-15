@@ -12,7 +12,7 @@ import com.example.mobile.DAO.AnimalDao;
 import com.example.mobile.DAO.UserDao;
 import com.example.mobile.database.relations.PlanFoodCrossRef;
 @TypeConverters
-@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class, PlanFoodEntity.class, PlanFoodCrossRef.class}, version = 1)
+@Database(entities = {UserEntity.class, ServiceEntity.class, FoodEntity.class, AnimalEntity.class, AppointmentEntity.class, PlanFoodEntity.class, PlanFoodCrossRef.class}, version = 3)
 public abstract class PetCareDatabase extends RoomDatabase {
     public abstract UserDao userDao();
 

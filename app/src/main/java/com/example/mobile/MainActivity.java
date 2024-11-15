@@ -1,9 +1,11 @@
 package com.example.mobile;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         PetCareDatabase db = DatabaseProvider.getDatabase(this);
         PlanFoodDao planFoodDao = db.planFoodDao();
         // Access DAOs to perform database operations
-        new Thread(() -> {
+       /* new Thread(() -> {
             // Example: Insert a user
             UserEntity user = new UserEntity();
             user.setName("John Doe");
@@ -110,10 +114,14 @@ public class MainActivity extends AppCompatActivity {
             planFoodDao.insertPlanFoodCrossRef(crossRef);
 
             Log.d("Insertion", "Insertion réussie avec FoodEntity ID: " + foodId + " et PlanFood ID: " + planId);
-*/
-        }).start();
+
+        }).start();*/
 
         // Set up view binding
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_food, R.id.nav_login, R.id.nav_signup,R.id.nav_admin_item, R.id.nav_service_fares, R.id.nav_animal)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_food, R.id.nav_login, R.id.nav_signup,R.id.nav_admin_item, R.id.nav_service_fares, R.id.nav_animal,R.id.nav_fragment,R.id.nav_vet)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

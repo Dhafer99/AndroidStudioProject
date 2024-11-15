@@ -32,6 +32,7 @@
         android:elevation="4dp">
 
         <LinearLayout
+            android:layout_marginTop="175dp"
             android:id="@+id/signInForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -213,6 +214,21 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:padding="12dp" />
+            <ImageView
+                android:id="@+id/user_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/rounded_imageview"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu_camera" />
+
+            <!-- Button to upload an image -->
+            <Button
+                android:id="@+id/upload_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Image" />
 
             <TextView
                 android:id="@+id/goToSignIn"

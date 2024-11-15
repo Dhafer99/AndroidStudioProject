@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Application;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.util.Patterns;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.AndroidViewModel;
@@ -40,6 +41,15 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public void login(String email, String password) {
+        if (!isValidEmail(email)) {
+            errorLiveData.postValue("Invalid email format");
+            return;
+        }
+        if (!isValidPassword(password)) {
+            errorLiveData.postValue("Password must be at least 6 characters long");
+            return;
+        }
+
         executor.execute(() -> {
             UserEntity user = userRepository.loginUser(email, password);
 
@@ -47,15 +57,9 @@ public class LoginViewModel extends AndroidViewModel {
                 if (user.getIsBlocked()) {
                     blockedUserLiveData.postValue(user);
                 } else {
-                    sessionManager.createLoginSession(user.getUserId(),user.getRole());
+                    sessionManager.createLoginSession(user.getUserId(), user.getRole());
 
-                    if (Objects.equals(user.getRole(), "Admin")) {
-
-
-                        userLiveData.postValue(user); // For admin
-                    } else if (Objects.equals(user.getRole(), "User")) {
-                        userLiveData.postValue(user); // For regular users
-                    }
+                    userLiveData.postValue(user); // Admin or regular user
                 }
             } else {
                 errorLiveData.postValue("Invalid email or password");
@@ -63,27 +67,35 @@ public class LoginViewModel extends AndroidViewModel {
         });
     }
 
-    public void signUp(String name, String email, String phone, String password,String role) {
-        // Check if location permission is granted before calling this method
-        // Check location permissions before proceeding
+    public void signUp(String name, String email, String phone, String password, String role, String image) {
+        if (!isValidEmail(email)) {
+            errorLiveData.postValue("Invalid email format");
+            return;
+        }
+        if (!isValidPhone(phone)) {
+            errorLiveData.postValue("Phone number must contain 8 digits");
+            return;
+        }
+        if (!isValidPassword(password)) {
+            errorLiveData.postValue("Password must be at least 6 characters long");
+            return;
+        }
+
         if (ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getApplication(), Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            // Permissions are not granted; handle this scenario in your activity (e.g., request permissions)
             errorLiveData.postValue("Location permissions are required for signup.");
-            return; // Exit the method if permissions are not granted
+            return;
         }
-        // Request current location with high accuracy
+
         fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
                 .addOnSuccessListener(location -> {
                     executor.execute(() -> {
-                        // Check if user already exists
                         UserEntity existingUser = userRepository.getUserByEmail(email);
                         if (existingUser != null) {
                             errorLiveData.postValue("User already exists");
                         } else {
-                            // Create a new user and insert into the database
                             UserEntity newUser = new UserEntity();
                             newUser.setName(name);
                             newUser.setEmail(email);
@@ -91,23 +103,36 @@ public class LoginViewModel extends AndroidViewModel {
                             newUser.setPassword(password);
                             newUser.setType(role);
                             newUser.setIsBlocked(false);
-                           newUser.setRole("User");
+                            newUser.setImage(image);
+                            newUser.setRole("User");
 
-                            // Set latitude and longitude if location is available
                             if (location != null) {
                                 newUser.setLatitude(location.getLatitude());
                                 newUser.setLongitude(location.getLongitude());
                             } else {
-                                newUser.setLatitude(0.0); // Default values if location is unavailable
+                                newUser.setLatitude(0.0);
                                 newUser.setLongitude(0.0);
                             }
 
                             userRepository.insertuser(newUser);
-                            userLiveData.postValue(newUser); // Successful signup
+                            userLiveData.postValue(newUser);
                         }
                     });
                 });
     }
+
+    private boolean isValidEmail(String email) {
+        return email != null && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean isValidPhone(String phone) {
+        return phone != null && phone.matches("\\d{8}");
+    }
+
+    private boolean isValidPassword(String password) {
+        return password != null && password.length() >= 6;
+    }
+
 
     public LiveData<UserEntity> getUserLiveData() {
         return userLiveData;

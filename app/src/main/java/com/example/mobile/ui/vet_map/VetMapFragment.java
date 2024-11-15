@@ -34,7 +34,7 @@ import java.util.concurrent.Executors;
 public class VetMapFragment extends Fragment implements OnMapReadyCallback {
 
     // Other class variables
-    private LatLng currentLocation = new LatLng(36.853563, 10.207563);
+    private LatLng currentLocation = new LatLng(36.852156, 10.208111);
     private GoogleMap googleMap;
     private UserRepository userRepository;
 
@@ -94,7 +94,7 @@ public class VetMapFragment extends Fragment implements OnMapReadyCallback {
 
     private void getDirections(LatLng origin, LatLng destination) {
         // Build the URL for the Directions API request
-        String apiKey = "AIzaSyANXKKudj1lZSqbHIuPAJeODvR7DWaLsmM"; // Replace with your actual API key
+        String apiKey = "GOOGLE MAPS KEY"; // Replace with your actual API key
         String url = "https://maps.googleapis.com/maps/api/directions/json?origin="
                 + origin.latitude + "," + origin.longitude
                 + "&destination=" + destination.latitude + "," + destination.longitude

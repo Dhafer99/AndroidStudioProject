@@ -28,6 +28,15 @@ public class UserEntity {
     private double latitude;
     private double longitude;
 
+    private String image ;
+
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     // Getters and Setters for new fields
     public double getLatitude() {
         return latitude;
